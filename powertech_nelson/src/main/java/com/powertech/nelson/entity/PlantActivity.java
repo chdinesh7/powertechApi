@@ -19,4 +19,25 @@ public class PlantActivity {
     private long id;
 	@ApiModelProperty(value = "plantactivitytype", required = false)
 	private String plant_activity_type;
+	public PlantActivity() {
+	}
+	public PlantActivity(long id, String plant_activity_type) {
+		super();
+		this.id = id;
+		this.plant_activity_type = plant_activity_type;
+	}
+	public long getId() {
+		return id;
+	}
+	public void setId(long id) {
+		this.id = id;
+	}
+	public String getPlant_activity_type() {
+		return plant_activity_type;
+	}
+	public void setPlant_activity_type(String plant_activity_type) {
+		this.plant_activity_type = plant_activity_type;
+	}
+	
+	
 }
