@@ -54,4 +54,13 @@ public class LabourTransactionController {
 		return new ResponseEntity<LabourTransaction>(labourTansactionService.findById(id).get(),HttpStatus.OK);
 	}
 	
+	@PostMapping(value="/transaction/labourdelete")
+	@ApiOperation(value = "labourTransaction", notes = "labourTransaction")
+	@ApiResponses({ @ApiResponse(code = 200, message = "Success"),
+			@ApiResponse(code = 400, message = "Bad request", response = MessageDTO.class) })
+	@ResponseBody
+	public ResponseEntity<String> delete(@RequestParam Long id) {
+		return new ResponseEntity<String>(labourTansactionService.delete(id), HttpStatus.OK);
+	}
+	
 }

@@ -52,4 +52,13 @@ public class LabourController {
 	public ResponseEntity<Labour> findById(@RequestParam Long id) {		
 		return new ResponseEntity<Labour>(labourService.findById(id).get(),HttpStatus.OK);
 	}
+	
+	@PostMapping(value="/deleteLabour")
+	@ApiOperation(value = "delete", notes = "delete")
+	@ApiResponses({ @ApiResponse(code = 200, message = "Success"),
+	@ApiResponse(code = 400, message = "Bad request", response = MessageDTO.class) })
+	@ResponseBody
+	public ResponseEntity<String> delete(@RequestParam Long id) {		
+		return new ResponseEntity<String>(labourService.delete(id),HttpStatus.OK);
+	}
 } 

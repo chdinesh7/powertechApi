@@ -10,4 +10,6 @@ public interface LabourTansactionService {
 	public String save(LabourTransaction labourTransaction);
 	public List<LabourTransaction> findAll();
 	public Optional<LabourTransaction> findById(Long id);
+	
+	public String delete(Long id);
 }

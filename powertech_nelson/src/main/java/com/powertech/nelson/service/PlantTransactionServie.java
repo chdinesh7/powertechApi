@@ -10,4 +10,10 @@ public interface PlantTransactionServie {
 	public String save(PlantTransaction plantTransaction);
 	public List<PlantTransaction> findAll();
 	public Optional<PlantTransaction> findById(Long id);
+	
+	public String delete(Long id);
+	
+	//Report date wise
+	public List<PlantTransaction> find(String from,String to);
+	
 }

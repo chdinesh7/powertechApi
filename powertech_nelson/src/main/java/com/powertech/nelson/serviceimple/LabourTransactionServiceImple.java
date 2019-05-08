@@ -31,4 +31,10 @@ public class LabourTransactionServiceImple implements LabourTansactionService {
 		return labourTransactionDao.findById(id);
 	}
 
+	@Override
+	public String delete(Long id) {
+		labourTransactionDao.deleteById(id);
+		return "Labour Transaction deleted Successfully";
+	}
+
 }

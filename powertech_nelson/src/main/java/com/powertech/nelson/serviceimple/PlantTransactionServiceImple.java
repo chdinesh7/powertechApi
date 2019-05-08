@@ -1,5 +1,6 @@
 package com.powertech.nelson.serviceimple;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -31,6 +32,18 @@ public class PlantTransactionServiceImple implements PlantTransactionServie {
 	public Optional<PlantTransaction> findById(Long id) {
 		
 		return plantTransactionDao.findById(id);
+	}
+
+	@Override
+	public String delete(Long id) {
+		plantTransactionDao.deleteById(id);
+		return "Labour Transaction deleted Successfully";
+	}
+
+	@Override
+	public List<PlantTransaction> find(String from, String to) {
+	
+		return plantTransactionDao.find(from, to);
 	}
 
 }

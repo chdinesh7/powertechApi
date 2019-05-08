@@ -34,4 +34,10 @@ public class LabourServiceImple implements LabourService {
 		return labourDao.findById(id);
 	}
 
+	@Override
+	public String delete(Long id) {
+		labourDao.deleteById(id);
+		return "Labour Type deleted Successfully ";
+	}
+
 }

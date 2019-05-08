@@ -1,17 +1,23 @@
 package com.powertech.nelson.entity;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
-@ApiModel(value = "PlantTransaction", description = "PlantTransaction Details")
+@ApiModel(value = "PlantTransaction", description = "PlantTransaction")
 @Entity
 @Table
 public class PlantTransaction {
@@ -19,33 +25,26 @@ public class PlantTransaction {
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-	@ApiModelProperty(value = "labourtype", required = false)
-	private String labour_type;
-	@ApiModelProperty(value = "employeeId", required = false)
-	private String emp_id;
-	@ApiModelProperty(value = "activitytype", required = false)
-	private String activity_type;
-	@ApiModelProperty(value = "jobno", required = false)
-	private String job_no;
-	@ApiModelProperty(value = "unit", required = false)
-	private String unit;
-	@ApiModelProperty(value = "date", required = false)
-	private Date date;
-	@ApiModelProperty(value = "description", required = false)
-	private String description;
+	@ApiModelProperty(value = "palntcode", required = false)
+	private String palnt_code;	
+	@ApiModelProperty(value = "Fault Allowance First on", required = false)
+	private String allowance_first;
+	@ApiModelProperty(value = "Fault Allowance Second on", required = false)
+	private String allowance_second;
+	
+	@OneToMany(fetch=FetchType.LAZY, targetEntity=PlantTransactionDetails.class, cascade=CascadeType.ALL)
+	@JoinColumn(name = "p_id", referencedColumnName="id")
+	private List<PlantTransactionDetails> plantTransactionDetails = new ArrayList<>();
 	
 	public PlantTransaction() {}
 
-	public PlantTransaction(long id, String labour_type, String emp_id, String activity_type, String job_no,
-			String unit, Date date, String description) {	
+	public PlantTransaction(long id, String palnt_code, String allowance_first, String allowance_second,
+			List<PlantTransactionDetails> plantTransactionDetails) {		
 		this.id = id;
-		this.labour_type = labour_type;
-		this.emp_id = emp_id;
-		this.activity_type = activity_type;
-		this.job_no = job_no;
-		this.unit = unit;
-		this.date = date;
-		this.description = description;
+		this.palnt_code = palnt_code;
+		this.allowance_first = allowance_first;
+		this.allowance_second = allowance_second;
+		this.plantTransactionDetails = plantTransactionDetails;
 	}
 
 	public long getId() {
@@ -56,61 +55,46 @@ public class PlantTransaction {
 		this.id = id;
 	}
 
-	public String getLabour_type() {
-		return labour_type;
+	public String getPalnt_code() {
+		return palnt_code;
 	}
 
-	public void setLabour_type(String labour_type) {
-		this.labour_type = labour_type;
+	public void setPalnt_code(String palnt_code) {
+		this.palnt_code = palnt_code;
 	}
 
-	public String getEmp_id() {
-		return emp_id;
+	public String getAllowance_first() {
+		return allowance_first;
 	}
 
-	public void setEmp_id(String emp_id) {
-		this.emp_id = emp_id;
+	public void setAllowance_first(String allowance_first) {
+		this.allowance_first = allowance_first;
 	}
 
-	public String getActivity_type() {
-		return activity_type;
+	public String getAllowance_second() {
+		return allowance_second;
 	}
 
-	public void setActivity_type(String activity_type) {
-		this.activity_type = activity_type;
+	public void setAllowance_second(String allowance_second) {
+		this.allowance_second = allowance_second;
 	}
 
-	public String getJob_no() {
-		return job_no;
+	public List<PlantTransactionDetails> getPlantTransactionDetails() {
+		return plantTransactionDetails;
 	}
 
-	public void setJob_no(String job_no) {
-		this.job_no = job_no;
+	public void setPlantTransactionDetails(List<PlantTransactionDetails> plantTransactionDetails) {
+		this.plantTransactionDetails = plantTransactionDetails;
 	}
+	
+	
+	
+	
 
-	public String getUnit() {
-		return unit;
-	}
+	
+	
 
-	public void setUnit(String unit) {
-		this.unit = unit;
-	}
-
-	public Date getDate() {
-		return date;
-	}
-
-	public void setDate(Date date) {
-		this.date = date;
-	}
-
-	public String getDescription() {
-		return description;
-	}
-
-	public void setDescription(String description) {
-		this.description = description;
-	}
+	
 	
 		
 	

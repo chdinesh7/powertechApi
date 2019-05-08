@@ -54,4 +54,23 @@ public class PlantTransactionController {
 		return new ResponseEntity<PlantTransaction>(plantTransactionServie.findById(id).get(),HttpStatus.OK);
 	}
 	
+	@PostMapping(value="/transaction/plantdelete")
+	@ApiOperation(value = "plantTransaction delete", notes = "plantTransaction delete")
+	@ApiResponses({ @ApiResponse(code = 200, message = "Success"),
+			@ApiResponse(code = 400, message = "Bad request", response = MessageDTO.class) })
+	@ResponseBody
+	public ResponseEntity<String> delete(@RequestParam Long id) {
+		return new ResponseEntity<String>(plantTransactionServie.delete(id), HttpStatus.OK);
+	}
+	
+	@PostMapping(value="/transaction/plantfind")
+	@ApiOperation(value = "plantTransaction find", notes = "plantTransaction find")
+	@ApiResponses({ @ApiResponse(code = 200, message = "Success"),
+			@ApiResponse(code = 400, message = "Bad request", response = MessageDTO.class) })
+	@ResponseBody
+	public ResponseEntity<List<PlantTransaction>> find(@RequestParam String from,@RequestParam String to) {
+		return new ResponseEntity<List<PlantTransaction>>(plantTransactionServie.find(from, to), HttpStatus.OK);
+	}
+	
+	
 }

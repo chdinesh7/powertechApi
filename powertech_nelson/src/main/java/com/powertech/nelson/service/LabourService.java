@@ -9,4 +9,5 @@ public interface LabourService {
 	public String save(Labour labour);
 	public List<Labour> findAll();
 	public Optional<Labour> findById(Long id);
+	public String delete(Long id);
 }

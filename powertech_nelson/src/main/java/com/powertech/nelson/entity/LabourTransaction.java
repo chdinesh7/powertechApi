@@ -1,12 +1,18 @@
 package com.powertech.nelson.entity;
 
 import java.sql.Time;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import io.swagger.annotations.ApiModel;
@@ -24,26 +30,25 @@ public class LabourTransaction {
 	private String labour_type;
 	@ApiModelProperty(value = "employeeId", required = false)
 	private String emp_id;
-	@ApiModelProperty(value = "activitytype", required = false)
-	private String activity_type;
-	@ApiModelProperty(value = "jobno", required = false)
-	private String job_no;	
-	@ApiModelProperty(value = "date", required = false)
-	private Date date;
-	@ApiModelProperty(value = "description", required = false)
-	private String description;
+	@ApiModelProperty(value = "Fault Allowance First on", required = false)
+	private String allowance_first;
+	@ApiModelProperty(value = "Fault Allowance Second on", required = false)
+	private String allowance_second;
 	
+	@OneToMany(fetch=FetchType.LAZY, targetEntity=LabourTransactionDetails.class, cascade=CascadeType.ALL)
+	@JoinColumn(name = "l_id", referencedColumnName="id")
+	private List<LabourTransactionDetails> labourTransactionDetails = new ArrayList<>();
+		
 	public LabourTransaction() {}
 
-	public LabourTransaction(long id, String labour_type, String emp_id, String activity_type, String job_no, Date date,
-			String description) {		
+	public LabourTransaction(long id, String labour_type, String emp_id, String allowance_first,
+			String allowance_second, List<LabourTransactionDetails> labourTransactionDetails) {		
 		this.id = id;
 		this.labour_type = labour_type;
 		this.emp_id = emp_id;
-		this.activity_type = activity_type;
-		this.job_no = job_no;
-		this.date = date;
-		this.description = description;
+		this.allowance_first = allowance_first;
+		this.allowance_second = allowance_second;
+		this.labourTransactionDetails = labourTransactionDetails;
 	}
 
 	public long getId() {
@@ -70,41 +75,31 @@ public class LabourTransaction {
 		this.emp_id = emp_id;
 	}
 
-	public String getActivity_type() {
-		return activity_type;
+	public String getAllowance_first() {
+		return allowance_first;
 	}
 
-	public void setActivity_type(String activity_type) {
-		this.activity_type = activity_type;
+	public void setAllowance_first(String allowance_first) {
+		this.allowance_first = allowance_first;
 	}
 
-	public String getJob_no() {
-		return job_no;
+	public String getAllowance_second() {
+		return allowance_second;
 	}
 
-	public void setJob_no(String job_no) {
-		this.job_no = job_no;
+	public void setAllowance_second(String allowance_second) {
+		this.allowance_second = allowance_second;
 	}
 
-	public Date getDate() {
-		return date;
+	public List<LabourTransactionDetails> getLabourTransactionDetails() {
+		return labourTransactionDetails;
 	}
 
-	public void setDate(Date date) {
-		this.date = date;
-	}
-
-	public String getDescription() {
-		return description;
-	}
-
-	public void setDescription(String description) {
-		this.description = description;
+	public void setLabourTransactionDetails(List<LabourTransactionDetails> labourTransactionDetails) {
+		this.labourTransactionDetails = labourTransactionDetails;
 	}
 
 	
-	
-	
-	
+		
 
 }
