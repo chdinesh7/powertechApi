@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import com.powertech.nelson.entity.LabourTransaction;
+import com.powertech.nelson.entity.LabourTransactionDetails;
 import com.powertech.nelson.entity.PlantTransaction;
 
 public interface LabourTansactionService {
@@ -14,8 +15,12 @@ public interface LabourTansactionService {
 	
 	public String update(LabourTransaction labourTransaction);
 	
-	public String delete(Long id);
+	
 	
 	public List<LabourTransaction> empFind(String emp_id);
 	public List<LabourTransaction> dateWise(String from,String to);
+	
+	public Optional<LabourTransactionDetails> labourD(Long id);
+	
+	public String delete(Long id);
 }

@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.powertech.nelson.entity.LabourTransaction;
+import com.powertech.nelson.entity.LabourTransactionDetails;
 import com.powertech.nelson.entity.PlantTransaction;
 import com.powertech.nelson.exceptions.MessageDTO;
 import com.powertech.nelson.service.LabourTansactionService;
@@ -65,14 +66,7 @@ public class LabourTransactionController {
 		return new ResponseEntity<LabourTransaction>(labourTansactionService.findById(id).get(), HttpStatus.OK);
 	}
 
-	@PostMapping(value = "/transaction/labourdelete")
-	@ApiOperation(value = "labourTransaction", notes = "labourTransaction")
-	@ApiResponses({ @ApiResponse(code = 200, message = "Success"),
-			@ApiResponse(code = 400, message = "Bad request", response = MessageDTO.class) })
-	@ResponseBody
-	public ResponseEntity<String> delete(@RequestParam Long id) {
-		return new ResponseEntity<String>(labourTansactionService.delete(id), HttpStatus.OK);
-	}
+	
 
 	@PostMapping(value = "/transaction/plant_emp_find")
 	@ApiOperation(value = "employee find", notes = "employee find")
@@ -90,6 +84,24 @@ public class LabourTransactionController {
 	@ResponseBody
 	public ResponseEntity<List<LabourTransaction>> find(@RequestParam String from,@RequestParam String to) {
 	return new ResponseEntity<List<LabourTransaction>>(labourTansactionService.dateWise(from, to), HttpStatus.OK);
+	}
+	
+	@GetMapping(value = "/transaction/singleLaboursDetails")
+	@ApiOperation(value = "singleLaboursDetails", notes = "singleLaboursDetails")
+	@ApiResponses({ @ApiResponse(code = 200, message = "Success"),
+			@ApiResponse(code = 400, message = "Bad request", response = MessageDTO.class) })
+	@ResponseBody
+	public ResponseEntity<LabourTransactionDetails> singleLD(@RequestParam Long id) {
+		return new ResponseEntity<LabourTransactionDetails>(labourTansactionService.labourD(id).get(), HttpStatus.OK);
+	}
+	
+	@PostMapping(value = "/transaction/labourdelete")
+	@ApiOperation(value = "labourTransactionDetails", notes = "labourTransactionDetails")
+	@ApiResponses({ @ApiResponse(code = 200, message = "Success"),
+			@ApiResponse(code = 400, message = "Bad request", response = MessageDTO.class) })
+	@ResponseBody
+	public ResponseEntity<String> delete(@RequestParam Long id) {
+		return new ResponseEntity<String>(labourTansactionService.delete(id), HttpStatus.OK);
 	}
 	
 

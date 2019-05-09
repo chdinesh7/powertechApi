@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.powertech.nelson.dao.LabourTransactionDao;
+import com.powertech.nelson.dao.LabourTransactionDetailsDao;
 import com.powertech.nelson.entity.LabourTransaction;
 import com.powertech.nelson.entity.LabourTransactionDetails;
 import com.powertech.nelson.entity.PlantTransaction;
@@ -19,6 +20,9 @@ public class LabourTransactionServiceImple implements LabourTansactionService {
 	
 	@Autowired
 	private LabourTransactionDao labourTransactionDao;
+	
+	@Autowired
+	private LabourTransactionDetailsDao labourTransactionDetailsDao;
 	
 	@Override
 	public String save(LabourTransaction labourTransaction) {
@@ -36,11 +40,6 @@ public class LabourTransactionServiceImple implements LabourTansactionService {
 		return labourTransactionDao.findById(id);
 	}
 
-	@Override
-	public String delete(Long id) {
-		labourTransactionDao.deleteById(id);
-		return "Labour Transaction deleted Successfully";
-	}
 
 	@Override
 	public List<LabourTransaction> empFind(String emp_id) {		
@@ -95,6 +94,18 @@ public class LabourTransactionServiceImple implements LabourTansactionService {
 	public List<LabourTransaction> dateWise(String from, String to) {
 		
 		return labourTransactionDao.findDateWise(from, to);
+	}
+
+	@Override
+	public Optional<LabourTransactionDetails> labourD(Long id) {
+		
+		return labourTransactionDetailsDao.findById(id);
+	}
+	
+	@Override
+	public String delete(Long id) {
+		labourTransactionDetailsDao.deleteById(id);
+		return "Labour Transaction Details deleted Successfully";
 	}
 
 }
