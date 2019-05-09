@@ -26,7 +26,9 @@ public class PlantTransaction {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 	@ApiModelProperty(value = "palntcode", required = false)
-	private String palnt_code;	
+	private String palnt_code;
+	@ApiModelProperty(value = "employee id", required = false)
+	private String emp_id;
 	@ApiModelProperty(value = "Fault Allowance First on", required = false)
 	private String allowance_first;
 	@ApiModelProperty(value = "Fault Allowance Second on", required = false)

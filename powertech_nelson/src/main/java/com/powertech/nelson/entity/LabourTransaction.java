@@ -99,6 +99,8 @@ public class LabourTransaction {
 		this.labourTransactionDetails = labourTransactionDetails;
 	}
 
+
+
 	
 		
 
