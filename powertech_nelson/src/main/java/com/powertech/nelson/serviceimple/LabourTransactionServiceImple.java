@@ -57,20 +57,24 @@ public class LabourTransactionServiceImple implements LabourTansactionService {
 	    	l.setAllowance_second(labourTransaction.getAllowance_second());
 	    	l.setEmp_id(labourTransaction.getEmp_id());
 	    	l.setLabour_type(labourTransaction.getLabour_type());
+	    	
 	    	List<LabourTransactionDetails> child=new ArrayList<>();       		 
 	    	
 	    		   
 	    		   labourTransaction.getLabourTransactionDetails().forEach(newitem ->{
-	    			   System.out.println("::::::"+newitem.getId());
-	    			   l.getLabourTransactionDetails().forEach(item -> {	    				   
+	    			 
+	    			   l.getLabourTransactionDetails().forEach(item -> {	  
+	    				   
 	 	    			  if(newitem.getId() == item.getId()) {	 	    			
 	 	    				  child.add(newitem);
+	 	    				
+	 	    				  
 	 	    			  }else {	 	    				 
 		    			   child.add(item);
 	 	    			  }
 		    	        });	    			  
-	    			   if(newitem.getId()==0) {	  
-	    				   System.out.println("::::::"+newitem.getId());
+	    			   if(newitem.getId()==0) {	
+	    				  
 	    			   child.add(newitem);
 	    			   }
 	    		   });	    	     
