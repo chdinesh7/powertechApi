@@ -68,7 +68,7 @@ public class LabourTransactionController {
 
 	
 
-	@PostMapping(value = "/transaction/plant_emp_find")
+	@PostMapping(value = "/transaction/labour_emp_find")
 	@ApiOperation(value = "employee find", notes = "employee find")
 	@ApiResponses({ @ApiResponse(code = 200, message = "Success"),
 			@ApiResponse(code = 400, message = "Bad request", response = MessageDTO.class) })

@@ -15,7 +15,7 @@ public interface LabourTransactionDao extends CrudRepository<LabourTransaction, 
 	@Query(value="SELECT * FROM labour_transaction  WHERE emp_id=?1",nativeQuery=true)
 	public List<LabourTransaction> empFind(String emp_id);
 	
-	@Query(value="SELECT * FROM labour_transaction a,labour_transaction_details b  where a.id=b.l_id and b.date BETWEEN (:from) AND (:to)",nativeQuery=true)
+	@Query(value="SELECT * FROM labour_transaction  where created_date BETWEEN (:from) AND (:to)",nativeQuery=true)
 	public List<LabourTransaction> findDateWise(@Param("from") String from,@Param("to") String to);
 	
 	

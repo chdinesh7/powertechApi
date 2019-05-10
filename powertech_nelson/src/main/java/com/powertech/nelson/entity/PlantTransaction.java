@@ -20,14 +20,14 @@ import io.swagger.annotations.ApiModelProperty;
 @ApiModel(value = "PlantTransaction", description = "PlantTransaction")
 @Entity
 @Table
-public class PlantTransaction {
+public class PlantTransaction extends Auditable<String> {
 	@ApiModelProperty(value = "The unique identifier of the given PlantTransaction", readOnly = true)
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 	@ApiModelProperty(value = "palntcode", required = false)
 	private String palnt_code;
-	@ApiModelProperty(value = "emp_id", required = false)
+	@ApiModelProperty(value = "emp id", required = false)
 	private String emp_id;
 	@ApiModelProperty(value = "Fault Allowance First on", required = false)
 	private String allowance_first;
@@ -39,56 +39,94 @@ public class PlantTransaction {
 	private List<PlantTransactionDetails> plantTransactionDetails = new ArrayList<>();
 	
 	public PlantTransaction() {}
+	
+	
 
-	public PlantTransaction(long id, String palnt_code, String allowance_first, String allowance_second,
+	public PlantTransaction(long id, String palnt_code, String emp_id, String allowance_first, String allowance_second,
 			List<PlantTransactionDetails> plantTransactionDetails) {		
 		this.id = id;
 		this.palnt_code = palnt_code;
+		this.emp_id = emp_id;
 		this.allowance_first = allowance_first;
 		this.allowance_second = allowance_second;
 		this.plantTransactionDetails = plantTransactionDetails;
 	}
+
+
 
 	public long getId() {
 		return id;
 	}
 
+
+
 	public void setId(long id) {
 		this.id = id;
 	}
+
+
 
 	public String getPalnt_code() {
 		return palnt_code;
 	}
 
+
+
 	public void setPalnt_code(String palnt_code) {
 		this.palnt_code = palnt_code;
 	}
+
+
+
+	public String getEmp_id() {
+		return emp_id;
+	}
+
+
+
+	public void setEmp_id(String emp_id) {
+		this.emp_id = emp_id;
+	}
+
+
 
 	public String getAllowance_first() {
 		return allowance_first;
 	}
 
+
+
 	public void setAllowance_first(String allowance_first) {
 		this.allowance_first = allowance_first;
 	}
+
+
 
 	public String getAllowance_second() {
 		return allowance_second;
 	}
 
+
+
 	public void setAllowance_second(String allowance_second) {
 		this.allowance_second = allowance_second;
 	}
+
+
 
 	public List<PlantTransactionDetails> getPlantTransactionDetails() {
 		return plantTransactionDetails;
 	}
 
+
+
 	public void setPlantTransactionDetails(List<PlantTransactionDetails> plantTransactionDetails) {
 		this.plantTransactionDetails = plantTransactionDetails;
 	}
-	
+
+
+
+
 	
 	
 	

@@ -12,7 +12,7 @@ import io.swagger.annotations.ApiModelProperty;
 @ApiModel(value = "PlantActivity", description = "PlantActivity Details")
 @Entity
 @Table
-public class PlantActivity {
+public class PlantActivity extends Auditable<String> {
 	@ApiModelProperty(value = "The unique identifier of the given plant activity", readOnly = true)
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

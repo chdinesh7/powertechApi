@@ -21,7 +21,7 @@ import io.swagger.annotations.ApiModelProperty;
 @ApiModel(value = "LabourTransaction", description = "LabourTransaction Details")
 @Entity
 @Table
-public class LabourTransaction {
+public class LabourTransaction extends Auditable<String> {
 	@ApiModelProperty(value = "The unique identifier of the given LabourTransaction", readOnly = true)
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
