@@ -27,7 +27,7 @@ public class PlantTransaction {
     private long id;
 	@ApiModelProperty(value = "palntcode", required = false)
 	private String palnt_code;
-	@ApiModelProperty(value = "employee id", required = false)
+	@ApiModelProperty(value = "emp_id", required = false)
 	private String emp_id;
 	@ApiModelProperty(value = "Fault Allowance First on", required = false)
 	private String allowance_first;
