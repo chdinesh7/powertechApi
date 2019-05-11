@@ -10,4 +10,6 @@ public interface EmployeeLabourService {
 	public String save(EmployeeLabour employeeLabour);
 	public List<EmployeeLabour> findAll();
 	public Optional<EmployeeLabour> findById(Long id);
+	
+	public List<EmployeeLabour>  findName(String emp_name);
 }

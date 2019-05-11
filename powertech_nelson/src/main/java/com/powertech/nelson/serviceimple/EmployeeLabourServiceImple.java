@@ -32,4 +32,10 @@ public class EmployeeLabourServiceImple implements EmployeeLabourService {
 		return employeeLabourDao.findById(id);
 	}
 
+	@Override
+	public List<EmployeeLabour> findName(String emp_name) {
+		
+		return employeeLabourDao.empFind(emp_name);
+	}
+
 }

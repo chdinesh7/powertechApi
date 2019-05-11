@@ -52,4 +52,13 @@ public class EmployeeLabourController {
 	public ResponseEntity<EmployeeLabour> findById(@RequestParam Long id) {		
 		return new ResponseEntity<EmployeeLabour>(employeeLabourService.findById(id).get(),HttpStatus.OK);
 	}
+	
+	@GetMapping(value = "/empsarch")
+	@ApiOperation(value = "empsarch", notes = "empsarch")
+	@ApiResponses({ @ApiResponse(code = 200, message = "Success"),
+			@ApiResponse(code = 400, message = "Bad request", response = MessageDTO.class) })
+	@ResponseBody
+	public ResponseEntity<List<EmployeeLabour>> empSarch(@RequestParam String emp_name) {		
+		return new ResponseEntity<List<EmployeeLabour>>(employeeLabourService.findName(emp_name),HttpStatus.OK);
+	}
 }

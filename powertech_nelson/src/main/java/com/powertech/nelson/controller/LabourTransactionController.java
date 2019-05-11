@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.powertech.nelson.entity.EmployeeLabour;
 import com.powertech.nelson.entity.LabourTransaction;
 import com.powertech.nelson.entity.LabourTransactionDetails;
 import com.powertech.nelson.entity.PlantTransaction;
@@ -104,5 +105,22 @@ public class LabourTransactionController {
 		return new ResponseEntity<String>(labourTansactionService.delete(id), HttpStatus.OK);
 	}
 	
+	@GetMapping(value = "/transaction/empsarch")
+	@ApiOperation(value = "tran empsarch", notes = "tran empsarch")
+	@ApiResponses({ @ApiResponse(code = 200, message = "Success"),
+			@ApiResponse(code = 400, message = "Bad request", response = MessageDTO.class) })
+	@ResponseBody
+	public ResponseEntity<List<LabourTransaction>> empSarch(@RequestParam String emp_name) {		
+		return new ResponseEntity<List<LabourTransaction>>(labourTansactionService.empSarch(emp_name),HttpStatus.OK);
+	}
+	
+	@GetMapping(value = "/transaction/labourreport")
+	@ApiOperation(value = "tran report", notes = "tran report")
+	@ApiResponses({ @ApiResponse(code = 200, message = "Success"),
+			@ApiResponse(code = 400, message = "Bad request", response = MessageDTO.class) })
+	@ResponseBody
+	public ResponseEntity<List<LabourTransaction>> labourreport(@RequestParam Long id) {		
+		return new ResponseEntity<List<LabourTransaction>>(labourTansactionService.report(id),HttpStatus.OK);
+	}
 
 }
