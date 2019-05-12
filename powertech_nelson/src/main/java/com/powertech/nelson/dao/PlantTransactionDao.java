@@ -16,4 +16,6 @@ public interface PlantTransactionDao extends CrudRepository<PlantTransaction, Lo
 	
 	@Query(value="SELECT * FROM plant_transaction   WHERE emp_id=?1",nativeQuery=true)
 	public List<PlantTransaction> empFind(String emp_id);
+	@Query(value="SELECT * FROM plant_transaction   WHERE emp_id=?1",nativeQuery=true)
+	public List<PlantTransaction> empFind(long id);
 }

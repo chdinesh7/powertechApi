@@ -24,4 +24,7 @@ public interface PlantTransactionServie {
 	public Optional<PlantTransactionDetails> plantD(Long id);
 	public String delete(Long id);
 	
+	public List<PlantTransaction> empSarch(String emp_name);	
+	
+	
 }
