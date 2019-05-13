@@ -8,10 +8,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.powertech.nelson.dao.EmployeeLabourDao;
+import com.powertech.nelson.dao.JobDao;
+import com.powertech.nelson.dao.PlantActivityDao;
+import com.powertech.nelson.dao.PlantDao;
 import com.powertech.nelson.dao.PlantTransactionDao;
 import com.powertech.nelson.dao.PlantTransactionDetailsDao;
+import com.powertech.nelson.entity.Activity;
 import com.powertech.nelson.entity.EmployeeLabour;
+import com.powertech.nelson.entity.Job;
+import com.powertech.nelson.entity.Labour;
 import com.powertech.nelson.entity.LabourTransaction;
+import com.powertech.nelson.entity.Plant;
+import com.powertech.nelson.entity.PlantActivity;
 import com.powertech.nelson.entity.PlantTransaction;
 import com.powertech.nelson.entity.PlantTransactionDetails;
 import com.powertech.nelson.service.PlantTransactionServie;
@@ -121,6 +129,42 @@ public class PlantTransactionServiceImple implements PlantTransactionServie {
 		return listFind;
 
 	}
+	
+	@Autowired
+	private PlantDao plantDao;
+	
+	@Autowired
+	private PlantActivityDao plantActivityDao;
+	
+	@Autowired
+	private JobDao jobDao;
+
+	@Override
+	public List<PlantTransaction> report(Long id) {
+		Optional<PlantTransaction> single=plantTransactionDao.findById(id);
+		List<PlantTransaction> listFind = new ArrayList<>();
+		Optional<EmployeeLabour> emp;
+		Optional<Plant> plant;
+		if (single.isPresent()) {
+			PlantTransaction re=single.get();
+			emp=employeeLabourDao.findById(Long.parseLong(re.getEmp_id()));
+			plant=plantDao.findById(Long.parseLong(re.getPalnt_code()));
+			
+			re.setEmp_id(emp.get().getFirestName()+"@"+emp.get().getEmployeeId()+"@"+emp.get().getId());
+			re.setPalnt_code(plant.get().getPlant_id()+"@"+plant.get().getId());
+			re.getPlantTransactionDetails().forEach(item ->{
+				Optional<PlantActivity> act=plantActivityDao.findById(Long.parseLong(item.getP_activity_type()));
+				Optional<Job> job= jobDao.findById(Long.parseLong(item.getJob_no()));
+				item.setP_activity_type(act.get().getPlant_activity_type()+"@"+act.get().getId());
+				item.setJob_no(job.get().getJob_type()+"@"+job.get().getId());
+			});
+			listFind.add(re);
+		}
+		
+		return listFind;
+	}
+	
+	
 
 
 }

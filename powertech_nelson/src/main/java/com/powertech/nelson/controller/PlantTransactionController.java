@@ -111,5 +111,14 @@ public class PlantTransactionController {
 		return new ResponseEntity<List<PlantTransaction>>(plantTransactionServie.empSarch(emp_name),HttpStatus.OK);
 	}
 	
+	@GetMapping(value = "/transaction/plantreport")
+	@ApiOperation(value = "tran plant report", notes = "tran plant report")
+	@ApiResponses({ @ApiResponse(code = 200, message = "Success"),
+			@ApiResponse(code = 400, message = "Bad request", response = MessageDTO.class) })
+	@ResponseBody
+	public ResponseEntity<List<PlantTransaction>> labourreport(@RequestParam Long id) {		
+		return new ResponseEntity<List<PlantTransaction>>(plantTransactionServie.report(id),HttpStatus.OK);
+	}
+	
 	
 }

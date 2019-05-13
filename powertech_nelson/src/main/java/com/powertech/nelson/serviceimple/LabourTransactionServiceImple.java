@@ -144,8 +144,7 @@ public class LabourTransactionServiceImple implements LabourTansactionService {
 	private JobDao jobDao;
 	
 	@Override
-	public List<LabourTransaction> report(Long id) {
-		List<LabourTransationDTO>  dto=new ArrayList<>();
+	public List<LabourTransaction> report(Long id) {		
 		Optional<LabourTransaction> single=labourTransactionDao.findById(id);
 		List<LabourTransaction> listFind = new ArrayList<>();
 		Optional<EmployeeLabour> emp;

@@ -6,7 +6,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 
-import com.powertech.nelson.entity.LabourTransaction;
+
 import com.powertech.nelson.entity.PlantTransaction;
 
 public interface PlantTransactionDao extends CrudRepository<PlantTransaction, Long> {

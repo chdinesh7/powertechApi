@@ -26,5 +26,5 @@ public interface PlantTransactionServie {
 	
 	public List<PlantTransaction> empSarch(String emp_name);	
 	
-	
+	public List<PlantTransaction> report(Long id);
 }
