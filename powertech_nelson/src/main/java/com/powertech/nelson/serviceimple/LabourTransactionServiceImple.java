@@ -125,10 +125,17 @@ public class LabourTransactionServiceImple implements LabourTansactionService {
 		empMaster.forEach(item -> {
 			List<LabourTransaction> f = labourTransactionDao.empFind(item.getId());
 			f.forEach(i -> {
-				i.setEmp_id(item.getFirestName()+"@"+item.getEmployeeId());
-			
+				i.setEmp_id(item.getFirestName()+"@"+item.getEmployeeId()+"@"+item.getId());
+				Optional<Labour> lab=labourDao.findById(Long.parseLong(i.getLabour_type()));
+				i.setLabour_type(lab.get().getLabour_type()+"@"+lab.get().getId());
+				i.getLabourTransactionDetails().forEach(ld -> {
+					Optional<Activity> act=activityDao.findById(Long.parseLong(ld.getActivity_type()));
+					ld.setActivity_type(act.get().getActivity_type()+"@"+act.get().getId());
+					Optional<Job> job= jobDao.findById(Long.parseLong(ld.getJob_no()));
+					ld.setJob_no(job.get().getJob_type()+"@"+job.get().getId());
+				});
 				listFind.add(i);
-			});
+			});			
 		});
 		
 		return listFind;

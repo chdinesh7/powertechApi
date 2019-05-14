@@ -123,8 +123,13 @@ public class PlantTransactionServiceImple implements PlantTransactionServie {
 			List<PlantTransaction> f = plantTransactionDao.empFind(item.getId());
 			f.forEach(i -> {
 				i.setEmp_id(item.getFirestName() + "@" + item.getEmployeeId());
+				
+				Optional<Plant> plant = plantDao.findById(Long.parseLong(i.getPalnt_code()));
+				i.setPalnt_code(plant.get().getPlant_id()+"@"+plant.get().getId());
 				listFind.add(i);
+				
 			});
+			
 		});
 		return listFind;
 
